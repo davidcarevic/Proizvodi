@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain
 {
-    class BaseEntity
+   public abstract class BaseEntity
     {
         public int Id { get; set; }
         public string Naziv { get; set; }

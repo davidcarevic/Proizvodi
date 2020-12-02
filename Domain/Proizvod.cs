@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain
 {
-    class Proizvod:BaseEntity
+   public class Proizvod:BaseEntity
     {
         public string Opis { get; set; }
         public double Cena { get; set; } // mozda decimal ili tako nesto za neke druge cifre

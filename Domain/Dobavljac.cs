@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Domain
 {
-    class Dobavljac:BaseEntity
+    public class Dobavljac:BaseEntity
     {
         public ICollection<Proizvod> Proizvods { get; set; }
     }
