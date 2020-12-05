@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Commands;
 using Application.DTO;
 using Application.Exceptions;
+using Application.Searchs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,25 +18,49 @@ namespace API.Controllers
         private readonly ICreateKategorijaCommand _createKategorija;
         private readonly IEditKategorijaCommand _editKategorija;
         private readonly IDeleteKategorijaCommand _deleteKategorija;
+        private readonly IGetKategorijasCommand _getKategorijas;
+        private readonly IGetKategorijaCommand _getKategorija;
 
-        public KategorijaController(ICreateKategorijaCommand createkategorija, IEditKategorijaCommand editKategorija, IDeleteKategorijaCommand deleteKategorija ) {
+        public KategorijaController(ICreateKategorijaCommand createkategorija, IEditKategorijaCommand editKategorija, IDeleteKategorijaCommand deleteKategorija, IGetKategorijasCommand getKategorijas, IGetKategorijaCommand getKategorija ) {
             this._createKategorija = createkategorija;
             this._editKategorija = editKategorija;
             this._deleteKategorija = deleteKategorija;
+            this._getKategorijas = getKategorijas;
+            this._getKategorija = getKategorija;
+         
         }
 
         // GET: api/Kategorija
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<GetKategorijaDTO>> Get([FromQuery]Search s)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                // Omogucena pretraga naziva slanjem query parametra Keyword
+                var kategorijas = _getKategorijas.Execute(s);
+                return Ok(kategorijas);
+            }
+            catch (EntityNotFoundException e) { return NotFound(e.Message); }
+            catch (Exception e) { return StatusCode(500, e.Message); }
         }
 
         // GET: api/Kategorija/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public ActionResult<GetKategorijaDTO> Get(int id)
         {
-            return "value";
+            try
+            {
+                var p = _getKategorija.Execute(id);
+                return StatusCode(200, p);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
         // POST: api/Kategorija

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Commands;
 using Application.DTO;
 using Application.Exceptions;
+using Application.Searchs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,25 +18,48 @@ namespace API.Controllers
         private readonly ICreateDobavljacCommand _createDobavljac;
         private readonly IEditDobavljacCommand _editDobavljac;
         private readonly IDeleteDobavljacCommand _deleteDobavljac;
+        private readonly IGetDobavljacsCommand _getDobavljacs;
+        private readonly IGetDobavljacCommand _getDobavljac;
 
-        public DobavljacController(ICreateDobavljacCommand createDobavljac, IEditDobavljacCommand editDobavljac, IDeleteDobavljacCommand deleteDobavljac) {
+        public DobavljacController(ICreateDobavljacCommand createDobavljac, IEditDobavljacCommand editDobavljac, IDeleteDobavljacCommand deleteDobavljac, IGetDobavljacsCommand getDobavljacs, IGetDobavljacCommand getDobavljacCommand) {
             this._createDobavljac = createDobavljac;
             this._editDobavljac = editDobavljac;
             this._deleteDobavljac = deleteDobavljac;
+            this._getDobavljacs = getDobavljacs;
+            this._getDobavljac = getDobavljacCommand;
         }
 
         // GET: api/Dobavljac
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<GetDobavljacDTO>> Get([FromQuery]Search s)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                // Omogucena pretraga naziva slanjem query parametra Keyword
+                var kategorijas = _getDobavljacs.Execute(s);
+                return Ok(kategorijas);
+            }
+            catch (EntityNotFoundException e) { return NotFound(e.Message); }
+            catch (Exception e) { return StatusCode(500, e.Message); }
         }
 
         // GET: api/Dobavljac/5
         [HttpGet("{id}", Name = "GetD")]
-        public string Get(int id)
+        public ActionResult<GetDobavljacDTO> Get(int id)
         {
-            return "value";
+            try
+            {
+                var p = _getDobavljac.Execute(id);
+                return StatusCode(200, p);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
         // POST: api/Dobavljac

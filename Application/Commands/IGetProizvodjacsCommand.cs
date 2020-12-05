@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Application.Commands
 {
-    public interface IGetKategorijasCommand:ICommand< Search,IEnumerable<GetKategorijaDTO>>
+    public interface IGetProizvodjacsCommand:ICommand<Search,IEnumerable<GetProizvodjacDTO>>
     {
     }
 }

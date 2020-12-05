@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Application.Commands;
 using Application.DTO;
 using Application.Exceptions;
+using Application.Searchs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,26 +18,49 @@ namespace API.Controllers
         private readonly ICreateProizvodjacCommand _createProizvodjac;
         private readonly IEditProizvodjacCommand _editProizvodjac;
         private readonly IDeleteProizvodjacCommand _deleteProizvodjac;
+        private readonly IGetProizvodjacsCommand _getProizvodjacs;
+        private readonly IGetProizvodjacCommand _getProizvodjac;
 
-        public ProizvodjacController(ICreateProizvodjacCommand createProizvodjac, IEditProizvodjacCommand editProizvodjac, IDeleteProizvodjacCommand deleteProizvodjac)
+        public ProizvodjacController(ICreateProizvodjacCommand createProizvodjac, IEditProizvodjacCommand editProizvodjac, IDeleteProizvodjacCommand deleteProizvodjac, IGetProizvodjacsCommand getProizvodjacs, IGetProizvodjacCommand getProizvodjac)
         {
             this._createProizvodjac = createProizvodjac;
             this._editProizvodjac = editProizvodjac;
             this._deleteProizvodjac = deleteProizvodjac;
+            this._getProizvodjacs = getProizvodjacs;
+            this._getProizvodjac = getProizvodjac;
         }
 
         // GET: api/Proizvodjac
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<GetProizvodjacDTO>> Get([FromQuery]Search s)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                // Omogucena pretraga naziva slanjem query parametra Keyword
+                var kategorijas = _getProizvodjacs.Execute(s);
+                return Ok(kategorijas);
+            }
+            catch (EntityNotFoundException e) { return NotFound(e.Message); }
+            catch (Exception e) { return StatusCode(500, e.Message); }
         }
 
         // GET: api/Proizvodjac/5
         [HttpGet("{id}", Name = "GetPP")]
-        public string Get(int id)
+        public ActionResult<GetProizvodjacDTO> Get(int id)
         {
-            return "value";
+            try
+            {
+                var p = _getProizvodjac.Execute(id);
+                return StatusCode(200, p);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
         // POST: api/Proizvodjac

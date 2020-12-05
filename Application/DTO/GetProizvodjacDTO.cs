@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application.DTO
 {
-    public class GetKategorijaDTO
+    public class GetProizvodjacDTO
     {
         public int Id { get; set; }
         public string Naziv { get; set; }

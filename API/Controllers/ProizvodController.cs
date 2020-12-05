@@ -19,12 +19,14 @@ namespace API.Controllers
         private readonly IEditProizvodCommand _editProizvod;
         private readonly IDeleteProizvodCommand _deleteProizvod;
         private readonly IGetProizvodsCommand _getProizvods;
+        private readonly IGetProizvodCommand _getProizvod;
 
-        public ProizvodController(ICreateProizvodCommand createProizvod, IEditProizvodCommand editProizvod, IDeleteProizvodCommand deleteProizvodCommand, IGetProizvodsCommand getProizvods) {
+        public ProizvodController(ICreateProizvodCommand createProizvod, IEditProizvodCommand editProizvod, IDeleteProizvodCommand deleteProizvodCommand, IGetProizvodsCommand getProizvods, IGetProizvodCommand getProizvod) {
             this._createProizvod = createProizvod;
             this._editProizvod = editProizvod;
             this._deleteProizvod = deleteProizvodCommand;
             this._getProizvods = getProizvods;
+            this._getProizvod = getProizvod;
         }
 
         // GET: api/Proizvod
@@ -43,9 +45,21 @@ namespace API.Controllers
 
         // GET: api/Proizvod/5
         [HttpGet("{id}", Name = "Getp")]
-        public string Get(int id)
+        public ActionResult<GetProizvodDTO> Get(int id)
         {
-            return "value";
+            try
+            {
+                var p = _getProizvod.Execute(id);
+                return StatusCode(200, p);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
         // POST: api/Proizvod

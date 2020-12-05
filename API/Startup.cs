@@ -43,6 +43,13 @@ namespace API
             services.AddTransient<IDeleteProizvodjacCommand, EFDeleteProizvodjacCommand>();
             services.AddTransient<IDeleteProizvodCommand, EFDeleteProizvodCommand>();
             services.AddTransient<IGetProizvodsCommand, EFGetProizovdsCommand>();
+            services.AddTransient<IGetKategorijasCommand, EFGetKategorijasCommand>();
+            services.AddTransient<IGetDobavljacsCommand, EFGetDobavljacsCommand>();
+            services.AddTransient<IGetProizvodjacsCommand, EFGetProizvodjacsCommand>();
+            services.AddTransient<IGetProizvodCommand, EFGetProizvodCommand>();
+            services.AddTransient<IGetDobavljacCommand, EFGetDobavljacCommand>();
+            services.AddTransient<IGetKategorijaCommand, EFGetKategorijaCommand>();
+            services.AddTransient<IGetProizvodjacCommand, EFGetProizvodjacCommand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
