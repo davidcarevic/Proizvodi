@@ -31,6 +31,8 @@ namespace API
             services.AddControllers();
             services.AddDbContext<ProizvodiContext>();
             services.AddTransient<ICreateKategorijaCommand, EFCreateKategorijaCommand>();
+            services.AddTransient<ICreateDobavljacCommand, EFCreateDobavljacCommand>();
+            services.AddTransient<ICreateProizvodjacCommand, EFCreateProizvodjacCommand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

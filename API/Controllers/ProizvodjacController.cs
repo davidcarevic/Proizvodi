@@ -12,45 +12,49 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class KategorijaController : ControllerBase
+    public class ProizvodjacController : ControllerBase
     {
-        private readonly ICreateKategorijaCommand _createKategorija;
+        private readonly ICreateProizvodjacCommand _createProizvodjac;
 
-        public KategorijaController(ICreateKategorijaCommand createkategorija) {
-            this._createKategorija = createkategorija;
+        public ProizvodjacController(ICreateProizvodjacCommand createProizvodjac)
+        {
+            this._createProizvodjac = createProizvodjac;
         }
 
-        // GET: api/Kategorija
+        // GET: api/Proizvodjac
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Kategorija/5
-        [HttpGet("{id}", Name = "Get")]
+        // GET: api/Proizvodjac/5
+        [HttpGet("{id}", Name = "GetPP")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Kategorija
+        // POST: api/Proizvodjac
         [HttpPost]
-        public ActionResult Post([FromBody] CreateKategorijaDTO dto)
+        public ActionResult Post([FromBody] CreateProizvodjacDTO dto)
         {
-            try {
-                _createKategorija.Execute(dto);
+            try
+            {
+                _createProizvodjac.Execute(dto);
                 return StatusCode(201);
             }
-            catch(EntityAlreadyExistsException e) {
+            catch (EntityAlreadyExistsException e)
+            {
                 return UnprocessableEntity(e.Message);
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
                 return StatusCode(500, e.Message);
             }
         }
 
-        // PUT: api/Kategorija/5
+        // PUT: api/Proizvodjac/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
