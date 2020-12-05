@@ -16,10 +16,12 @@ namespace API.Controllers
     {
         private readonly ICreateKategorijaCommand _createKategorija;
         private readonly IEditKategorijaCommand _editKategorija;
+        private readonly IDeleteKategorijaCommand _deleteKategorija;
 
-        public KategorijaController(ICreateKategorijaCommand createkategorija, IEditKategorijaCommand editKategorija) {
+        public KategorijaController(ICreateKategorijaCommand createkategorija, IEditKategorijaCommand editKategorija, IDeleteKategorijaCommand deleteKategorija ) {
             this._createKategorija = createkategorija;
             this._editKategorija = editKategorija;
+            this._deleteKategorija = deleteKategorija;
         }
 
         // GET: api/Kategorija
@@ -69,8 +71,21 @@ namespace API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            try {
+                _deleteKategorija.Execute(id);
+                return StatusCode(200);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+
         }
     }
 }

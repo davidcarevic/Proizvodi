@@ -16,10 +16,12 @@ namespace API.Controllers
     {
         private readonly ICreateDobavljacCommand _createDobavljac;
         private readonly IEditDobavljacCommand _editDobavljac;
+        private readonly IDeleteDobavljacCommand _deleteDobavljac;
 
-        public DobavljacController(ICreateDobavljacCommand createDobavljac, IEditDobavljacCommand editDobavljac) {
+        public DobavljacController(ICreateDobavljacCommand createDobavljac, IEditDobavljacCommand editDobavljac, IDeleteDobavljacCommand deleteDobavljac) {
             this._createDobavljac = createDobavljac;
             this._editDobavljac = editDobavljac;
+            this._deleteDobavljac = deleteDobavljac;
         }
 
         // GET: api/Dobavljac
@@ -72,8 +74,22 @@ namespace API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            try
+            {
+                _deleteDobavljac.Execute(id);
+                return StatusCode(200);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+
         }
     }
 }

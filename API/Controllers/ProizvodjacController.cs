@@ -16,11 +16,13 @@ namespace API.Controllers
     {
         private readonly ICreateProizvodjacCommand _createProizvodjac;
         private readonly IEditProizvodjacCommand _editProizvodjac;
+        private readonly IDeleteProizvodjacCommand _deleteProizvodjac;
 
-        public ProizvodjacController(ICreateProizvodjacCommand createProizvodjac, IEditProizvodjacCommand editProizvodjac)
+        public ProizvodjacController(ICreateProizvodjacCommand createProizvodjac, IEditProizvodjacCommand editProizvodjac, IDeleteProizvodjacCommand deleteProizvodjac)
         {
             this._createProizvodjac = createProizvodjac;
             this._editProizvodjac = editProizvodjac;
+            this._deleteProizvodjac = deleteProizvodjac;
         }
 
         // GET: api/Proizvodjac
@@ -73,8 +75,22 @@ namespace API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            try
+            {
+                _deleteProizvodjac.Execute(id);
+                return StatusCode(200);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+
         }
     }
 }

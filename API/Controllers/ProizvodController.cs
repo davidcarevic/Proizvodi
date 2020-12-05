@@ -16,10 +16,12 @@ namespace API.Controllers
     {
         private readonly ICreateProizvodCommand _createProizvod;
         private readonly IEditProizvodCommand _editProizvod;
+        private readonly IDeleteProizvodCommand _deleteProizvod;
 
-        public ProizvodController(ICreateProizvodCommand createProizvod, IEditProizvodCommand editProizvod) {
+        public ProizvodController(ICreateProizvodCommand createProizvod, IEditProizvodCommand editProizvod, IDeleteProizvodCommand deleteProizvodCommand) {
             this._createProizvod = createProizvod;
             this._editProizvod = editProizvod;
+            this._deleteProizvod = deleteProizvodCommand;
         }
 
         // GET: api/Proizvod
@@ -76,8 +78,22 @@ namespace API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            try
+            {
+                _deleteProizvod.Execute(id);
+                return StatusCode(200);
+            }
+            catch (EntityNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+
         }
     }
 }
