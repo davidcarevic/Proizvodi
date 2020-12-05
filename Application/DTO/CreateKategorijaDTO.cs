@@ -8,8 +8,10 @@ namespace Application.DTO
     public class CreateKategorijaDTO
     {
         public int Id { get; set; }
+
         [Required]
         public string Naziv { get; set; }
-        [Required]
+        
+
     }
 }

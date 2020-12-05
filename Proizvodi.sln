@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFDataAccess", "EFDataAcces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{C95B3D6A-4517-4FC5-8D09-1C3B7A6926E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCommands", "EFCommands\EFCommands.csproj", "{057F61AF-4B49-4C56-8AB7-1D9A7CE433DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{A9101438-01B1-44BE-B96B-44AA219EA87F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C95B3D6A-4517-4FC5-8D09-1C3B7A6926E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C95B3D6A-4517-4FC5-8D09-1C3B7A6926E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C95B3D6A-4517-4FC5-8D09-1C3B7A6926E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{057F61AF-4B49-4C56-8AB7-1D9A7CE433DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057F61AF-4B49-4C56-8AB7-1D9A7CE433DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057F61AF-4B49-4C56-8AB7-1D9A7CE433DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057F61AF-4B49-4C56-8AB7-1D9A7CE433DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9101438-01B1-44BE-B96B-44AA219EA87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9101438-01B1-44BE-B96B-44AA219EA87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9101438-01B1-44BE-B96B-44AA219EA87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9101438-01B1-44BE-B96B-44AA219EA87F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
