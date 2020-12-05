@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "82c6d036-a265-4015-a136-e8921096baa0",
+		"name": "Proizvodi - Postman request collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Proizvod",
+			"item": [
+				{
+					"name": "proizvod create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Proizvod3\",\r\n    \"Opis\":\"Treci proizvod\",\r\n    \"Cena\":10000,\r\n    \"KatId\":3,\r\n    \"DobId\":3,\r\n    \"ProId\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvod",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvod"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvod edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Proizvod2 Promena\",\r\n    \"Opis\":\"Izmena izmena\",\r\n    \"Cena\":5000,\r\n    \"KatId\":1,\r\n    \"DobId\":2,\r\n    \"ProId\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvod/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvod",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvod delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvod/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvod",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvod get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Keyword",
+									"value": "Proizvod",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvod",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvod"
+							]
+						},
+						"description": "Use param Keyword to search for a specific one"
+					},
+					"response": []
+				},
+				{
+					"name": "proizvod get single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvod/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvod",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Proizvodjac",
+			"item": [
+				{
+					"name": "proizvodjac create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Proizvodjac3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvodjac",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvodjac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvodjac edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Proizvodjac2PROMENJEN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvodjac/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvodjac",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvodjac delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvodjac/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvodjac",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvodjac get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvodjac",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvodjac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "proizvodjac get single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Proizvodjac/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Proizvodjac",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Kategorija",
+			"item": [
+				{
+					"name": "Kategorija create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Kategorija1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Kategorija",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Kategorija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kategorija edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Kategorija1Promena\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Kategorija/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Kategorija",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kategorija delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Kategorija/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Kategorija",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kategorija get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Kategorija",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Kategorija"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "kategorija get single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Kategorija/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Kategorija",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Dobavljac",
+			"item": [
+				{
+					"name": "dobavljac get single",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Dobavljac/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Dobavljac",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dobavljac create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Dobavljac3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Dobavljac",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Dobavljac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dobavljac edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Naziv\":\"Dobavljac3Promenjen\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44398/api/Dobavljac/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Dobavljac",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dobavljac delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Dobavljac/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Dobavljac",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dobavljac get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44398/api/Dobavljac",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44398",
+							"path": [
+								"api",
+								"Dobavljac"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
