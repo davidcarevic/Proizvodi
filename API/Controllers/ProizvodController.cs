@@ -12,43 +12,46 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProizvodjacController : ControllerBase
+    public class ProizvodController : ControllerBase
     {
-        private readonly ICreateProizvodjacCommand _createProizvodjac;
-        private readonly IEditProizvodjacCommand _editProizvodjac;
+        private readonly ICreateProizvodCommand _createProizvod;
+        private readonly IEditProizvodCommand _editProizvod;
 
-        public ProizvodjacController(ICreateProizvodjacCommand createProizvodjac, IEditProizvodjacCommand editProizvodjac)
-        {
-            this._createProizvodjac = createProizvodjac;
-            this._editProizvodjac = editProizvodjac;
+        public ProizvodController(ICreateProizvodCommand createProizvod, IEditProizvodCommand editProizvod) {
+            this._createProizvod = createProizvod;
+            this._editProizvod = editProizvod;
         }
 
-        // GET: api/Proizvodjac
+        // GET: api/Proizvod
         [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Proizvodjac/5
-        [HttpGet("{id}", Name = "GetPP")]
+        // GET: api/Proizvod/5
+        [HttpGet("{id}", Name = "Getp")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Proizvodjac
+        // POST: api/Proizvod
         [HttpPost]
-        public ActionResult Post([FromBody] CreateProizvodjacDTO dto)
+        public ActionResult Post([FromBody] CreateProizvodDTO dto)
         {
             try
             {
-                _createProizvodjac.Execute(dto);
+                _createProizvod.Execute(dto);
                 return StatusCode(201);
             }
             catch (EntityAlreadyExistsException e)
             {
                 return UnprocessableEntity(e.Message);
+            }
+            catch (EntityNotFoundException e) 
+            {
+                return NotFound(e.Message);
             }
             catch (Exception e)
             {
@@ -56,14 +59,14 @@ namespace API.Controllers
             }
         }
 
-        // PUT: api/Proizvodjac/5
+        // PUT: api/Proizvod/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] EditProizvodjacDTO dto)
+        public ActionResult Put(int id, [FromBody] EditProizvodDTO dto)
         {
             dto.Id = id;
             try
             {
-                _editProizvodjac.Execute(dto);
+                _editProizvod.Execute(dto);
                 return StatusCode(204);
             }
             catch (EntityNotFoundException e) { return NotFound(e.Message); }

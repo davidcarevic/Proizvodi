@@ -15,9 +15,11 @@ namespace API.Controllers
     public class DobavljacController : ControllerBase
     {
         private readonly ICreateDobavljacCommand _createDobavljac;
+        private readonly IEditDobavljacCommand _editDobavljac;
 
-        public DobavljacController(ICreateDobavljacCommand createDobavljac) {
+        public DobavljacController(ICreateDobavljacCommand createDobavljac, IEditDobavljacCommand editDobavljac) {
             this._createDobavljac = createDobavljac;
+            this._editDobavljac = editDobavljac;
         }
 
         // GET: api/Dobavljac
@@ -55,8 +57,17 @@ namespace API.Controllers
 
         // PUT: api/Dobavljac/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody] EditDobavljacDTO dto)
         {
+            dto.Id = id;
+            try
+            {
+                _editDobavljac.Execute(dto);
+                return StatusCode(204);
+            }
+            catch (EntityNotFoundException e) { return NotFound(e.Message); }
+
+            catch (Exception e) { return StatusCode(500, e.Message); }
         }
 
         // DELETE: api/ApiWithActions/5
