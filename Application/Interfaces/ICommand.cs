@@ -15,4 +15,5 @@ namespace Application.Interfaces
         TResult Execute(TRequest request);
 
     }
+
 }
