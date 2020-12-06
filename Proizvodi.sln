@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCommands", "EFCommands\EF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{A9101438-01B1-44BE-B96B-44AA219EA87F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console - Data Creation", "Console - Data Creation\Console - Data Creation.csproj", "{9B369489-912D-405A-9A82-227162C32A6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console - Data Creation", "Console - Data Creation\Console - Data Creation.csproj", "{9B369489-912D-405A-9A82-227162C32A6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{03856AA4-732F-42F8-A678-FE44FC1467E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9B369489-912D-405A-9A82-227162C32A6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B369489-912D-405A-9A82-227162C32A6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B369489-912D-405A-9A82-227162C32A6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03856AA4-732F-42F8-A678-FE44FC1467E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03856AA4-732F-42F8-A678-FE44FC1467E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03856AA4-732F-42F8-A678-FE44FC1467E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03856AA4-732F-42F8-A678-FE44FC1467E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
